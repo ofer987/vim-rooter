@@ -101,6 +101,11 @@ function! s:activate()
 
   " file
   if !filereadable(fn) | return 0 | endif
+
+  " .gitignore
+  if fn[-10:] == '.gitignore' | return 0 | endif
+
+  " matches the regex patterns
   if !exists('*glob2regpat') | return 1 | endif
 
   for p in filter(copy(patterns), 'v:val != "/"')
